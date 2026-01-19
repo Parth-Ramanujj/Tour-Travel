@@ -1,0 +1,65 @@
+{% extends "base.html "%}
+
+{% block start %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - TravelEase</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+
+    <main>
+        <section class="payment-page">
+            <h1>Payment Details</h1>
+            <div class="booking-summary">
+                <h2>Booking Summary</h2>
+                
+                
+                
+                <p><strong>Destination:</strong> {{book_detai.place_name}}</p>
+                <p><strong>Date:</strong>{{book_detai.date_arrivale}} </p>
+                <p><strong>Travelers:</strong> {{book_detai.adults_kids}}</p>
+              {%for p in pack%}
+              {%if p.place_name == book_detai.place_name%}
+                <p><strong>Total:</strong>₹{{p.package_price}}</p>
+                {%endif%}
+               {%endfor%}
+            </div>
+            <form class="payment-form" action="/bookingconformation/">
+                {%csrf_token%}
+                <div class="form-group">
+                    <label for="card-number">Card Number:</label>
+                    <input type="text" id="card-number" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-name">Name on Card:</label>
+                    <input type="text" id="card-name" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiry-date">Expiry Date:</label>
+                        <input type="text" id="expiry-date" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV:</label>
+                        <input type="text" id="cvv" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Pay Now</button>
+                {%for p in pack%}
+                {%if p.place_name == book_detai.place_name%}
+                <a  href="{% url 'upi' %}?price={{p.package_price}}">  <button type="button" class="btn paypal-btn">Pay with UPI</button>
+                    {%endif%}
+                    {%endfor%}
+            </form>
+        </section>
+    </main>
+
+   {%endblock%}
+</body>
+</html>

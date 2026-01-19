@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {%load static%}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation - TravelEase</title>
+    <link rel="stylesheet" href={%static 'styles2.css'%}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <main>
+        <section class="booking-confirmation">
+            <div class="confirmation-message">
+                <i class="fas fa-check-circle"></i>
+                <h1>Booking Confirmed!</h1>
+                <p>Thank you for choosing TravelEase. Your booking has been successfully confirmed.</p>
+            </div>
+            <div class="booking-details">
+                <h2>Booking Details</h2>               
+                <ul>
+                  
+                    
+                    <li><strong>Booking ID:</strong>{{booking_id}}</li>
+                   
+                    <li><strong>Destination:</strong>{{name}} </li>
+                    <li><strong>Check-in:</strong> {{checkin}}</li>
+                    <li><strong>Check-out:</strong>{{checkout}}</li>
+                    <li><strong>Guests:</strong>{{Travelers}}</li>
+                    {%for p in pack%}
+                    <li><strong>Total Amount:</strong>₹{{p.package_price}}</li>       
+                    {%endfor%}             
+                </ul>               
+            </div>
+            <div class="confirmation-actions">
+                
+                <a href="/" class="btn">GOTO Home Page</a>
+            </div>
+        </section>
+    </main>
+
+   
+</body>
+</html>

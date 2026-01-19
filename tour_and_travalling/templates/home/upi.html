@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UPI Payment</title>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #5e35b1;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+h1 {
+    color: #333;
+    font-size: 28px;
+}
+
+.tagline {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Payment Card Styles */
+.payment-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 20px;
+}
+
+.payment-options {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.option-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #666;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.option-btn.active {
+    color: #5e35b1;
+    font-weight: 600;
+}
+
+.option-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #5e35b1;
+    border-radius: 3px;
+}
+
+.payment-section {
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: border 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #5e35b1;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 14px;
+    background-color: #5e35b1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.pay-btn:hover {
+    background-color: #4527a0;
+}
+
+/* QR Code Styles */
+.qr-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.qr-code {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.qr-code img {
+    width: 100%;
+    height: 100%;
+}
+
+.qr-instruction {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.upi-apps {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.app-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Payment Methods */
+.payment-methods {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.payment-methods p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.method-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.method-icon {
+    padding: 8px 12px;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    color: #777;
+    font-size: 13px;
+}
+
+.security-note {
+    margin-top: 5px;
+    color: #5e35b1;
+    font-weight: 500;
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .payment-card {
+        padding: 20px;
+    }
+    
+    .option-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .qr-code {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .method-icons {
+        gap: 8px;
+    }
+    
+    .method-icon {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+        </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <span>₹</span>
+                </div>
+                <h1>PayEasy</h1>
+            </div>
+            <p class="tagline">Fast, Secure UPI Payments</p>
+        </header>
+
+        <main class="payment-card">
+            <h2>Make Payment</h2>
+            
+            <div class="payment-options">
+                <button class="option-btn active" id="form-btn">Enter Details</button>
+                <button class="option-btn" id="qr-btn">Scan QR</button>
+            </div>
+
+            <div class="payment-section" id="form-section">
+                <form id="payment-form" action="/bookingconformation/" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group">
+                        <label for="amount">Amount (₹)</label>
+                        
+                        <input type="disebal" id="amount" placeholder="Enter amount" value={{price}} disabled>
+                       
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="upi-id">UPI ID</label>
+                        <input type="text" id="upi-id" placeholder="example@upi" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="note">Note (Optional)</label>
+                        <input type="text" id="note" placeholder="Payment for...">
+                    </div>
+                    
+                    <button type="submit" class="pay-btn">Pay Now</button>
+                </form>
+            </div>
+
+            <div class="payment-section hidden" id="qr-section">
+                <div class="qr-container">
+                    <div class="qr-code">
+                    <img src={% static "img/qr.jpg" %}   >
+                    </div>
+                    <p class="qr-instruction">Scan with any UPI app to pay</p>
+                    <div class="upi-apps">
+                        <div class="app-icon">G</div>
+                        <div class="app-icon">P</div>
+                        <div class="app-icon">A</div>
+                        <div class="app-icon">B</div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="payment-methods">
+            <p>Supported UPI Apps</p>
+            <div class="method-icons">
+                <div class="method-icon">Google Pay</div>
+                <div class="method-icon">PhonePe</div>
+                <div class="method-icon">Paytm</div>
+                <div class="method-icon">BHIM</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2025 PayEasy. All rights reserved.</p>
+            <p class="security-note">🔒 Secure payments powered by UPI</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple tab switching functionality
+        const formBtn = document.getElementById('form-btn');
+        const qrBtn = document.getElementById('qr-btn');
+        const formSection = document.getElementById('form-section');
+        const qrSection = document.getElementById('qr-section');
+
+        formBtn.addEventListener('click', () => {
+            formBtn.classList.add('active');
+            qrBtn.classList.remove('active');
+            formSection.classList.remove('hidden');
+            qrSection.classList.add('hidden');
+        });
+
+        qrBtn.addEventListener('click', () => {
+            qrBtn.classList.add('active');
+            formBtn.classList.remove('active');
+            qrSection.classList.remove('hidden');
+            formSection.classList.add('hidden');
+        });
+
+        {% comment %} // Form submission (prevent default for demo)
+        const paymentForm = document.getElementById('payment-form');
+        paymentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Payment initiated! This would connect to a UPI payment gateway in a real application.');
+        }); {% endcomment %}
+    </script> 
+</body>
+</html>

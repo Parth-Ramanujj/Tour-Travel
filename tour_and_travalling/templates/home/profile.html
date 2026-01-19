@@ -1,0 +1,63 @@
+{% extends "base.html "%}
+
+{% block start %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - TravelEase</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   
+
+    <main>
+        <section class="profile-page">
+{% csrf_token %}
+            {% comment %} {%for u in user%} {% endcomment %}
+            <h1>User Profile</h1>
+            <div class="profile-info">
+                {%for r in reg%}
+                <img src="{{r.image}}" alt="User Avatar" class="avatar">
+                {%endfor%}
+                <h2>{{user.username}}</h2>
+                <p>Email:{{user.email}}</p>
+                <p>Member since: {{user.date_joined|date:"d-m-Y"}}</p>
+            </div>
+            {% comment %} {%endfor%} {% endcomment %}
+            <div class="profile-actions">
+                <a href="/profile_management/" class="btn">Edit Profile</a>
+            </div>
+            <div class="booking-history">
+                <h3>Booking History</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {%for b in book %}
+                        {%if b.user_name == user.username%}
+                        <tr>
+                            <td>{{b.place_name}}</td>
+                            <td>{{b.date_arrivale}}</td>
+                            <td>Confirmed</td>
+                            {%endif%}
+                            {%endfor%}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+   
+</body>
+</html>
+{%endblock%}

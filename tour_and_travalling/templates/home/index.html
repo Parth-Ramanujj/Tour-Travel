@@ -1,0 +1,200 @@
+
+{% extends "base.html "%}
+{%load static%}
+{% block start %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelEase - Your Ultimate Travel Companion</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   {% comment %} <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> {% endcomment %}
+    
+</head>
+<body>
+   
+    <main>
+         <section class="hero">
+            <h1>Discover the India with TravelEase</h1>
+            <p>Embark on unforgettable journeys to breathtaking destinations around the globe.</p>
+            <a href="{%url 'offers'%}" class="cta-button">Start Your Adventure</a>
+        </section>
+
+       
+      
+        <section class="featured-destinations">
+            <h2>Featured Destinations</h2>
+            <form method="post">
+                {%csrf_token%}
+            <div class="destination-grid">
+                {%for package in pack%}  
+              
+                <div class="destination-card">
+                    
+                    <img src="/media/{{package.place_image}}" alt={{package.place_name}} name="image">
+                    <h3 name="pack_name">{{package.place_name}}</h3>
+                    <p>{{package.package_name}}</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(4.5)</span>
+                    </div>
+                   
+                    <a href="{% url 'place_info' %}?place_name={{package.place_name}}" class="btn" >Book Now</a>
+                </div>
+                
+            </form>
+                {%endfor%}
+                {% comment %} <div class="destination-card">
+                    <img src="{% static "Dwarka.jpg" %}" alt="Dwarka">
+                    <h3>Dwarka</h3>
+                    <p>Explore the blend of tradition and future Dwarika Nagari</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4.0)</span>
+                    </div>
+                    <a href="/place_info/" class="btn">Book Now</a>
+                </div>
+                <div class="destination-card">
+                    <img src="/static/img/ayodhya.jpg" alt="Ayodhya">
+                    <h3>Ayodhya</h3>
+                    <p>Discover Ayodhya Dham</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5.0)</span>
+                    </div>
+                    <a href="/place_info/" class="btn">Book Now</a>
+                </div> {% endcomment %}
+            </div>
+        </section>
+
+{% comment %} search section {% endcomment %}
+
+
+        <section class="search-page"id="search">
+            <h1>Search and Book Your Trip</h1>
+            <form class="search-form" method="post">
+                {%csrf_token%}
+                <input type="text" name="search" placeholder="Destination" required>
+                <input type="date" required>
+                <select required>
+                    <option value="">Number of Travelers</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4+</option>
+                </select>
+                <button type="submit">Search</button>
+            </form>
+            
+            <div class="search-results">
+                
+                {%for package in pack%} 
+                {%if search == package.place_name%}
+                <div class="result-card" id="searchInput">
+                    <img src="/media/{{package.place_image}}" alt="somnath">
+                    <div class="result-info">
+                        <h3>India</h3>
+                        <p>{{package.package_name}}</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <p class="price">From ₹{{package.package_price}}</p>
+                        <a href="{% url 'place_info' %}?place_name={{package.place_name}}" class="btn">Book Now</a>
+                    </div>
+                </div>
+                {%elif search == " "%}
+                
+                <div class="result-card" id="searchInput">
+                    <img src="{% static package.place_image %}" alt="dwaraka">
+                    <div class="result-info">
+                        <h3>India</h3>
+                        <p>Experience the City of Dwarika Nagari</p>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5)</span>
+                        </div>
+                        <p class="price">From ₹{{package.package_price}}</p>
+                        <a href="{% url 'place_info' %}?place_name={{package.place_name}}" class="btn">Book Now</a>
+                    </div>
+                </div>
+                
+                    {%endif%}
+                    {%endfor%}
+
+                  
+                    
+                  
+                    <script>
+
+                        document.getElementById('searchInput').addEventListener('keyup', function() {
+                            let filter = this.value.toLowerCase();
+                            let listItems = document.querySelectorAll('.result-card');
+                          
+                            listItems.forEach(function(item) {
+                              let text = item.textContent.toLowerCase();
+                              if (text.includes(filter)) {
+                                item.style.display = '';
+                              } else {
+                                item.style.display = 'none';
+                              }
+                            });
+                          });
+                          
+                    </script>
+                <div class="search-results">
+                    {% comment %} <div class="result-card" >
+                        <img src="{% static '/img/ayodhya.jpg' %}" alt="Water">
+                        <div class="result-info">
+                            <h3>India</h3>
+                            <p>Experience the City of Dwarika Nagari</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span>(4.5)</span>
+                            </div>
+                            <p class="price">From ₹1000</p>
+                            <a href="{% url 'place_info' %}?place_name={{package.place_name}}" class="btn">Book Now</a>
+                        </div>
+                    </div> {% endcomment %}
+                
+                <!-- More result cards... -->
+            </div>
+        </section>
+    </main>
+
+    </main>
+
+   
+</body>
+</html>
+
+
+{% endblock %}

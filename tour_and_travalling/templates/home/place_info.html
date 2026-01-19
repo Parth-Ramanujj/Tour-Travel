@@ -1,0 +1,553 @@
+{% extends "base.html "%}
+{%load static  %}
+{% block start %}
+{% comment %} {% extends "base.html "%}
+
+{% block start %} {% endcomment %}
+{% comment %} <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Management - TravelEase</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    .p{
+        
+        margin-top:5rem;
+    }
+  </style>
+</head>
+<body>
+    <div class="p">
+    <div class="destination-card">
+        <img src="/static/img/dwarka.jpg" alt="Dwarka" geight="10rem">
+        <h3>Dwarka</h3>
+        <p>Explore the blend of tradition and future Dwarika Nagari</p>
+        <div class="rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            <span>(4.0)</span>
+        </div>
+        <a href="/place_info/" class="btn">Book Now</a>
+    </div>
+<a href="/payment/">
+<button type="submit" class="btn btn-primary"  >Book Now</button></a>
+</div>
+</body>
+</html> {% endcomment %}
+{% comment %} {%endblock%} {% endcomment %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India - TravelEase</title>
+    <link rel="stylesheet" href="{%static 'styles.css'%}">
+    <link rel="stylesheet" href="{%static 'place-styles.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="place-hero">
+            <div class="place-hero-image">
+                <img src="/tour_and_travalling/static/img/{{place}}.jpg" alt={{place}}>
+            </div>
+            <div class="place-hero-overlay"></div>
+            <div class="place-hero-content">
+              
+                <h1>{{place}}</h1>
+              
+                <div class="place-meta">
+                    <div class="place-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>4.8</span>
+                    </div>
+                    <div class="place-location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>India</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Place Navigation -->
+        <section class="place-navigation">
+            <div class="container">
+                <nav class="place-nav">
+                    <a href="#overview" class="active">Overview</a>
+                    <a href="#attractions">Attractions</a>
+                    <a href="#gallery">Gallery</a>
+                    <a href="#tips">Travel Tips</a>
+                    <a href="#reviews">Reviews</a>
+                    <a href="#packages">Tour Packages</a>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="place-section">
+            <div class="container">
+                <div class="place-overview">
+                    <div class="place-description">
+                        <h2>About {{place}}</h2>
+                      
+              
+               
+            
+                        {%for p in pack%}
+                        {%if p.place_name == place%}
+                        <p>{{p.package_desc}}</p>
+                        {%endif%}
+                        {%endfor%}  
+                    </div>
+                    <div class="place-quick-facts">
+                        <h3>Quick Facts</h3>
+                        <ul>
+                            <li><i class="fas fa-globe"></i> <strong>State:</strong> India</li>
+                            <li><i class="fas fa-language"></i> <strong>Language:</strong> Indiai/Hindi</li>
+                            <li><i class="fas fa-money-bill-wave"></i> <strong>Currency:</strong>INR(₹)</li>
+                            <li><i class="fas fa-clock"></i> <strong>Time Zone:</strong>IST(UTC+5:30)</li>
+                            <li><i class="fas fa-calendar-alt"></i> <strong>Best Time to Visit:</strong> Any Mounth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Attractions Section -->
+        <section id="attractions" class="place-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Top Attractions</h2>
+                <div class="attractions-grid">
+                    {%for a in att%}
+                    {%if a.place_name == place%}
+                    <div class="attraction-card">
+                        <img src={{a.att_image}} alt={{place}}>
+                        <div class="attraction-content">
+                            <h3>{{a.att_name}}</h3>
+                            <p>{{a.att_desc}}</p>
+                            <div class="attraction-meta">
+                                <span><i class="fas fa-clock"></i> 3-4 hours</span>
+                                <span><i class="fas fa-inr-sign"></i>From ₹150</span>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%endfor%}
+
+                </div>
+            </div>
+        </section>
+        <!-- Gallery Section -->
+        <section id="gallery" class="place-section">
+            <div class="container">
+                <h2 class="section-title">Photo Gallery</h2>
+                <div class="gallery-grid">
+                    
+                    <div class="gallery-item">
+                        <img src="/tour_and_travalling/static/gallary/{{place}}/{{place}}1.jpg" alt={{place}}>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/tour_and_travalling/static/gallary/{{place}}/{{place}}2.jpg" alt={{place}}>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/tour_and_travalling/static/gallary/{{place}}/{{place}}3.jpg" alt={{place}}>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/tour_and_travalling/static/gallary/{{place}}/{{place}}4.jpg" alt={{place}}>
+                    </div>
+                    {% comment %} <div class="gallery-item">
+                        <img src="/static/img/dwarka.jpg" alt="Louvre Pyramid">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/img/dwarka.jpg" alt="Champs-Élysées">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/img/dwarka.jpg" alt="Montmartre Steps">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="/static/img/dwarka.jpg" alt="Luxembourg Gardens">
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section -->
+        <section id="map" class="place-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Location</h2>
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <img src="/tour_and_travalling/static/img/{{place}}.jpg" alt={{place}}>
+                        <!-- In a real implementation, this would be replaced with an interactive map -->
+                    </div>
+                    {% comment %} <div class="map-info">
+                        <h3>Getting Around</h3>
+                        <p>Paris has an excellent public transportation system including the Metro (subway), buses, and RER (regional express network). The city is also very walkable, especially in the central districts.</p>
+                        <div class="transportation-options">
+                            <div class="transport-option">
+                                <i class="fas fa-subway"></i>
+                                <span>Metro</span>
+                            </div>
+                            <div class="transport-option">
+                                <i class="fas fa-bus"></i>
+                                <span>Bus</span>
+                            </div>
+                            <div class="transport-option">
+                                <i class="fas fa-bicycle"></i>
+                                <span>Bike Rental</span>
+                            </div>
+                            <div class="transport-option">
+                                <i class="fas fa-walking"></i>
+                                <span>Walking</span>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Section -->
+        {% comment %} <section id="weather" class="place-section">
+            <div class="container">
+                <h2 class="section-title">Weather</h2>
+                <div class="weather-container">
+                    <div class="current-weather">
+                        <h3>Current Weather</h3>
+                        <div class="weather-display">
+                            <div class="weather-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="weather-details">
+                                <div class="temperature">22°C</div>
+                                <div class="weather-description">Sunny</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weather-forecast">
+                        <h3>Seasonal Averages</h3>
+                        <div class="seasons-grid">
+                            <div class="season-card">
+                                <h4>Spring (Mar-May)</h4>
+                                <div class="season-temp">8-18°C</div>
+                                <p>Mild temperatures with occasional rain showers. Gardens begin to bloom.</p>
+                            </div>
+                            <div class="season-card">
+                                <h4>Summer (Jun-Aug)</h4>
+                                <div class="season-temp">15-25°C</div>
+                                <p>Warm and pleasant with long daylight hours. Peak tourist season.</p>
+                            </div>
+                            <div class="season-card">
+                                <h4>Fall (Sep-Nov)</h4>
+                                <div class="season-temp">7-20°C</div>
+                                <p>Mild temperatures with beautiful fall colors. Less crowded.</p>
+                            </div>
+                            <div class="season-card">
+                                <h4>Winter (Dec-Feb)</h4>
+                                <div class="season-temp">2-8°C</div>
+                                <p>Cold with occasional frost. Festive atmosphere during holidays.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> {% endcomment %}
+
+        <!-- Travel Tips Section -->
+        <section id="tips" class="place-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Travel Tips</h2>
+                <div class="tips-container">
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-language"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Language</h3>
+                            <p>Main language: Indiai &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Widely understood: Hindi </p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Money</h3>
+                            <p>ATMs: Available in cities & towns (less so in rural areas)</p> <p> Digital Payments: UPI, Google Pay, PhonePe, Paytm widely used</p><p> Tip: Carry some cash for small shops, villages, or transport</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Electricity</h3>
+                            <p>Voltage: 230V, 50Hz</p>
+<p>Plugs: Type C, D, and M </p> <p>Tip: Bring a universal adapter if you're coming from outside India  Power cuts are rare in cities but can occur in rural areas</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Dining</h3>
+                            <p>Lunch is typically from 12-2pm and dinner from 7:30-10pm. Reservations are recommended for popular restaurants.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Attractions</h3>
+                            <p>Book tickets for major attractions in advance to avoid long lines.</p>
+                        </div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="tip-content">
+                            <h3>Safety</h3>
+                            <p>India is one of the safest states in India for tourists Locals are friendly and helpful</p>
+                                <p> Tips:
+                                Avoid isolated places at night Keep emergency numbers handy (Police: 100, Ambulance: 108) Watch out for pickpockets in crowded markets Dress modestly, especially in rural and temple areas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section id="reviews" class="place-section">
+            <div class="container">
+                <h2 class="section-title">Traveler Reviews</h2>
+                <div class="reviews-container">
+                    <div class="review-summary">
+                        <div class="overall-rating">
+                            <div class="rating-number">4.8</div>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            
+                        </div>
+                        <div class="rating-breakdown">
+                            <div class="rating-bar">
+                                <span class="rating-label">5 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 75%"></div>
+                                </div>
+                                <span class="rating-percent">75%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">4 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 18%"></div>
+                                </div>
+                                <span class="rating-percent">18%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">3 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 5%"></div>
+                                </div>
+                                <span class="rating-percent">5%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">2 Stars</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                            <div class="rating-bar">
+                                <span class="rating-label">1 Star</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 1%"></div>
+                                </div>
+                                <span class="rating-percent">1%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-list">
+                        
+                        {%for f in feed%}
+        {%if f.package_name == place%}
+                        <div class="review-card">
+
+                            <div class="reviewer-info">
+                              
+                                <img src="\media\profile_images\{{f.user_name}}.png" alt={{user.username}} class="reviewer-avatar">
+                               
+                                <div class="reviewer-details">
+                                    <h4>{{f.user_name}}</h4>
+                                    <div class="review-date">{{f.r_date}}</div>
+                                </div>
+                               
+                              
+                                <div class="review-rating">
+                                   <b>{{f.rating}}</b> <i class="fas fa-star"></i>
+                                    
+                                </div>
+                            </div>
+                            
+                            <h3 class="review-title">{{f.package_name}}</h3>
+                            <p class="review-text">{{f.discription}}</p>
+                            <br>
+                       
+                        </div>
+                        {%endif%}
+                        {%endfor%}
+                       
+                        {% comment %} <div class="review-card">
+                            <div class="reviewer-info">
+                                <img src="/static/img/dwarka.jpg" alt="Sarah M." class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4>Sarah M.</h4>
+                                    <div class="review-date">Visited April 2023</div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <h3 class="review-title">Beautiful but Crowded</h3>
+                            <p class="review-text">Paris is as beautiful as they say, but be prepared for crowds, especially at major attractions. The Louvre was amazing but very busy. I recommend visiting in shoulder season. The food was incredible and the city has a wonderful energy.</p>
+                        </div>
+                        <div class="review-card">
+                            <div class="reviewer-info">
+                                <img src="/static/img/dwarka.jpg" alt="dwarka" class="reviewer-avatar">
+                                <div class="reviewer-details">
+                                    <h4>Michael T.</h4>
+                                    <div class="review-date">Visited June 2023</div>
+                                </div>
+                                <div class="review-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <h3 class="review-title">A Culinary Paradise</h3>
+                            <p class="review-text">If you're a food lover, Paris is heaven! From casual cafes to fine dining, the culinary scene is unmatched. We took a food tour in Saint-Germain and it was a highlight of our trip. Don't miss the pastries and cheese shops!</p>
+                        </div> {% endcomment %}
+                    </div>
+                    <div class="review-actions">
+                        
+                        <button class="btn btn-primary" ><a href="{% url 'Review' %}?place_name={{place}}">Write a Review</a></button>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tour Packages Section -->
+        <section id="packages" class="place-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Tour Packages Including India</h2>
+                <div class="packages-grid">
+                    <div class="package-card">
+                        <div class="package-image">
+                            <img src="{%static '/gallary/ayodhya/ayodhya1.jpg'%}" alt={{place}}>
+                            <div class="package-badge">Astha</div>
+                        </div>
+                        <div class="package-content">
+                            <h3>Ayodhya</h3>
+                            <div class="package-meta">
+                                <span><i class="fas fa-calendar-alt"></i> 5 Days</span>
+                                <span><i class="fas fa-users"></i> Max 15 people</span>
+                            </div>
+                            <p>Ayodhya is a historic city located on the banks of the Sarayu River in Uttar Pradesh, India. It is considered one of the seven most sacred cities in Hinduism and is believed to be the birthplace of Lord Rama, a major deity in the Hindu epic *Ramayana*. The city attracts millions of pilgrims and tourists, especially after the recent construction of the grand Ram Mandir.</p>
+                            <div class="package-price">
+                                <span class="price">₹1,500</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <a href="{% url 'place_info' %}?place_name=ayodhya" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                    <div class="package-card">
+                        <div class="package-image">
+                            <img src=" {%static '/gallary/dwarka/dwarka1.jpg'%}" alt={{place}}>
+                        </div>
+                        <div class="package-content">
+                            <h3>Dwarika</h3>
+                            <div class="package-meta">
+                                <span><i class="fas fa-calendar-alt"></i> 5 Days</span>
+                                <span><i class="fas fa-users"></i> Max 12 people</span>
+                            </div>
+                            <p>Dwarka, also spelled Dwarika, is an ancient city in the state of India, India, and is considered one of the four sacred Char Dham pilgrimage sites in Hinduism. It is believed to have been the kingdom of Lord Krishna, who is said to have ruled there after leaving Mathura. Dwarka is known for the Dwarkadhish Temple, a stunning temple dedicated to Krishna and a major spiritual destination for devotees.</p>
+                            <div class="package-price">
+                                <span class="price">₹1,000</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <a href="{% url 'place_info' %}?place_name=dwarka" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                    <div class="package-card">
+                        <div class="package-image">
+                            <img src=" {%static '/gallary/somnath/somnath1.jpg'%}" alt={{place}}>
+                            <div class="package-badge">Mahadev</div>
+                        </div>
+                        <div class="package-content">
+                            <h3>Somnath</h3>
+                            <div class="package-meta">
+                                <span><i class="fas fa-calendar-alt"></i> 7 Days</span>
+                                <span><i class="fas fa-users"></i>  Max 12 people </span>
+                            </div>
+                            <p>Somnath is a revered temple town located on the western coast of India, India, and is home to the famous Somnath Temple, one of the twelve Jyotirlingas of Lord Shiva. The temple has a rich and tumultuous history, having been destroyed and rebuilt several times due to invasions, symbolizing resilience and devotion. It stands as a magnificent example of Chalukya architecture and is a major pilgrimage site attracting devotees and tourists from across the country.</p>
+                            <div class="package-price">
+                                <span class="price">₹1,200</span>
+                                <span class="per-person">per person</span>
+                            </div>
+                            <a href="{% url 'place_info' %}?place_name=somnath" class="btn btn-primary">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="place-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Experience India?</h2>
+                    <p>Book your dream India vacation today and create memories that will last a lifetime.</p>
+                    <div class="cta-buttons">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'booking' %}?place_name={{place}}" class="btn btn-primary btn-lg">Book Now</a>
+                        {%else%}
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Book Now</a>
+                        {%endif%}
+                       
+                        {% comment %} <a href="" class="btn btn-outline btn-lg">Contact Us</a> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <!-- Same as index.html -->
+    </footer>
+</body>
+</html>
+{%endblock%}

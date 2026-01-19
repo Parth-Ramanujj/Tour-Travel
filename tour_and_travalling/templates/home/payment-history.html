@@ -1,0 +1,60 @@
+{% extends "base.html "%}
+
+{% block start %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment History - TravelEase</title>
+    <link rel="stylesheet" href="/static/styles2.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+
+    <main>
+        <section class="payment-history">
+            <h1>Payment History</h1>
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Destination</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023-07-15</td>
+                        <td>Paris, France</td>
+                        <td>$2000</td>
+                        <td><span class="status-paid">Paid</span></td>
+                        <td><a href="#" class="btn btn-small">View Receipt</a></td>
+                    </tr>
+                    <tr>
+                        <td>2023-09-01</td>
+                        <td>Tokyo, Japan</td>
+                        <td>$2500</td>
+                        <td><span class="status-pending">Pending</span></td>
+                        <td><a href="#" class="btn btn-small">Complete Payment</a></td>
+                    </tr>
+                    <tr>
+                        <td>2023-05-10</td>
+                        <td>New York, USA</td>
+                        <td>$1800</td>
+                        <td><span class="status-refunded">Refunded</span></td>
+                        <td><a href="#" class="btn btn-small">View Details</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+   
+</body>
+</html>
+{%endblock%}

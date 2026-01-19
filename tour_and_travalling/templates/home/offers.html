@@ -1,0 +1,49 @@
+{% extends "base.html "%}
+{%load static%}
+{% block start %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers - TravelEase</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+   
+    <main>
+        <section class="offers-page">
+            <h1>Special Offers and Discounts</h1>
+            <div class="offer-grid">
+                {%for package in pack%}  
+                <div class="offer-card">
+                    <img src="/tour_and_travalling/static/img/{{package.place_name}}.jpg" alt={{package.place_name}}>
+                    <h3>{{package.place_name}}</h3>
+                    <p>Get 20% off on all beach destinations!</p>
+                    <p class="discount">Use code: SUMMER20</p>
+                    <a href="{% url 'place_info' %}?place_name={{package.place_name}}" class="btn">Book Now</a>
+                </div>
+                {%endfor%}
+                {% comment %} <div class="offer-card">
+                    <img src="{% static "dwarka1.jpg" %}" alt="dwarka">
+                    <h3>dwarka</h3>
+                    <p>3 nights for the price of 2 in selected cities!</p>
+                    <p class="discount">Use code: CITY3FOR2</p>
+                    <a href="/booking/" class="btn">Book Now</a>
+                </div>
+                <div class="offer-card">
+                    <img src="{% static "/img/somnath.jpg" %}" alt="somnath">
+                    <h3>somnath</h3>
+                    <p>Book 6 months in advance and save 15%!</p>
+                    <p class="discount">Use code: EARLY15</p>
+                    <a href="/booking/" class="btn">Book Now</a>
+                </div> {% endcomment %}
+            </div>
+        </section>
+    </main>
+
+    
+</body>
+</html>
+{% endblock %}

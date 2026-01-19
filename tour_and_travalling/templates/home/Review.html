@@ -1,0 +1,117 @@
+<html lang="en">
+    {%load static%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Page</title>
+    <link rel="stylesheet" href={% static "styles.css" %}>
+   
+    
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .star {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #3498DB;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .reviews {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .review {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+        .review:last-child {
+            border-bottom: none;
+        }
+        button a{
+            text-style:none;
+            text:white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Leave a Review</h1>
+    <form id="reviewForm" method="POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {%for r in reg%}
+        {%if r.name == un.username%}
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" value={{r.name}} required> 
+        <input type="hidden" name="image" value={{r.image}}>
+        {%endif%}
+{%endfor%}
+<label for="name">Your Package_Name:</label> 
+<input type="text" id="name" name="place_name" value={{place}} required>
+<label for="star">Give Rating:</label> 
+                <select class="star" name="star" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" >4</option>
+                    <option value="5" selected>5</option>
+                </select>
+<br>
+        <label for="review">Your Review:</label>
+        <textarea id="review" name="review" rows="4"  required></textarea>
+        <button type="submit" >Submit Review</button>
+    </form>
+
+  <!--  <div class="reviews" id="reviewsSection">
+        <h2>Submitted Reviews</h2>
+    </div>-->
+
+  <!--  <script>
+        const form = document.getElementById('reviewForm');
+        const reviewsSection = document.getElementById('reviewsSection');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const review = document.getElementById('review').value;
+
+            const reviewDiv = document.createElement('div');
+            reviewDiv.classList.add('review');
+            reviewDiv.innerHTML = `<strong>${name}</strong><p>${review}</p>`;
+
+            reviewsSection.appendChild(reviewDiv);
+
+            form.reset();
+        });
+    </script>-->
+
+</body>
+</html>

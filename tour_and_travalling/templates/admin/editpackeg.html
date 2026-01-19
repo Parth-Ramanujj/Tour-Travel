@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Management - Edit Booking</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --success: #10b981;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --background: #f9fafb;
+            --border: #e5e7eb;
+            --card: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        input.invalid, select.invalid, textarea.invalid {
+            border-color: var(--danger);
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-message.visible {
+            display: block;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 20px;
+            grid-column: 1 / -1;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-danger {
+            background-color: white;
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .btn-danger:hover {
+            background-color: rgba(239, 68, 68, 0.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .status-confirmed {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-pending {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+        }
+
+        .status-cancelled {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+        }
+
+        .booking-id {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .form-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .form-title {
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <div>
+                <h1 class="form-title">Edit Package</h1>
+                <div class="booking-id">Package ID: #BK-2023-0458</div>
+            </div>
+            <div class="status-badge status-confirmed">Confirmed</div>
+        </div>
+
+        {% comment %} <form  method="POST" id="bookingForm" class="booking-form" >
+            <!-- Customer Information -->
+             {%csrf_token%}
+            <div class="form-group">
+                <label for="Package">Package Name*</label>
+                <input type="text" id="Packagename" name="package_name" value="John Doe" required>
+           
+            </div>
+
+
+            <div class="form-group">
+                <label for="customerPhone">Price</label>
+                <input type="number" id="Location" name="package_price" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bookingStatus">Place Status</label>
+                <select id="bookingStatus" name="Status">
+                    <option value="confirmed" selected>Active</option>
+                    <option value="pending">unactive</option>
+    
+                </select>
+            </div>
+
+            <!-- Booking Details -->
+           
+
+         
+          
+            <div class="form-group full-width">
+                <label for="specialRequests">Package Image</label>
+            <input type="file" name="place_name">   
+            </div>
+
+           
+            <div class="button-group">
+                <button type="button" class="btn-danger" id="cancelButton"><a href="/superadmin/"> Cancel</a></button>
+               <button  class="btn-primary" > Update</button>
+            </div>
+            
+        </form> {% endcomment %}
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+    {%for p in pack%}
+            <label for="place_image">Place Image:</label><br>
+            <input type="file" name="place_image" value={{p.place_image}} required><br><br>
+    
+            <label for="place_name">Place Name:</label><br>
+            <input type="text" name="place_name" value={{p.place_name}} required><br><br>
+    
+            <label for="package_price">Package Price:</label><br>
+            <input type="number" name="package_price" value={{p.package_price}} required><br><br>
+    
+            <label for="package_name">Package Name:</label><br>
+            <input type="text" name="package_name" value={{p.package_name}} required><br><br>
+    
+            <label for="package_desc">Package Description:</label><br>
+            <textarea name="package_desc" rows="4" cols="50">{{p.package_desc}} </textarea><br><br>
+    {%endfor%}
+            <button type="submit">Update Package</button>
+        </form>
+
+    </div>
+
+    {% comment %} <script>
+        // Simple form validation
+        const form = document.getElementById('bookingForm');
+        const requiredFields = form.querySelectorAll('[required]');
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            let isValid = true;
+            
+            // Check all required fields
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    field.classList.add('invalid');
+                    const errorId = field.id + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.classList.add('visible');
+                    }
+                    isValid = false;
+                } else {
+                    field.classList.remove('invalid');
+                    const errorId = field.id + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement) {
+                        errorElement.classList.remove('visible');
+                    }
+                }
+            });
+            
+            if (isValid) {
+                // In a real application, you would submit the form data to a server here
+                alert('Booking updated successfully!');
+                // Simulate redirect after successful update
+                setTimeout(() => {
+                    window.location.href = '#booking-list';
+                }, 1000);
+            }
+        });
+        
+        // Cancel button functionality
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            if (confirm('Are you sure you want to cancel? Any unsaved changes will be lost.')) {
+                // Simulate redirect to booking list
+                window.location.href = '#booking-list';
+            }
+        });
+        
+        // Status badge update based on select
+        const statusSelect = document.getElementById('bookingStatus');
+        const statusBadge = document.querySelector('.status-badge');
+        
+        statusSelect.addEventListener('change', function() {
+            statusBadge.className = 'status-badge';
+            statusBadge.classList.add('status-' + this.value);
+            statusBadge.textContent = this.options[this.selectedIndex].text;
+        });
+    </script> {% endcomment %}
+</body>
+</html>

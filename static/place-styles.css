@@ -1,0 +1,768 @@
+/* Place Information Page Styles */
+
+/* Hero Section */
+.place-hero {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    overflow: hidden;
+  }
+  
+  .place-hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .place-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .place-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7));
+  }
+  
+  .place-hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 5%;
+    color: #fff;
+  }
+  
+  .place-hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .place-meta {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.1rem;
+  }
+  
+  .place-rating,
+  .place-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .place-rating i {
+    color: #ffc107;
+  }
+  
+  /* Navigation */
+  .place-navigation {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .place-nav {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.5rem 0;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .place-nav::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .place-nav a {
+    padding: 0.8rem 1.2rem;
+    color: #555;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .place-nav a:hover {
+    color: #3498db;
+  }
+  
+  .place-nav a.active {
+    color: #3498db;
+    border-bottom: 2px solid #3498db;
+  }
+  
+  /* Section Styles */
+  .place-section {
+    padding: 4rem 0;
+  }
+  
+  .bg-light {
+    background-color: #f9f9f9;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: #333;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Overview Section */
+  .place-overview {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+  
+  .place-description h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  .place-description p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .place-quick-facts {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .place-quick-facts h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.5rem;
+  }
+  
+  .place-quick-facts ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .place-quick-facts li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+  
+  .place-quick-facts i {
+    width: 20px;
+    margin-right: 10px;
+    color: #3498db;
+  }
+  
+  /* Attractions Section */
+  .attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .attraction-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .attraction-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .attraction-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .attraction-content {
+    padding: 1.5rem;
+  }
+  
+  .attraction-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+  }
+  
+  .attraction-content p {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+    color: #666;
+  }
+  
+  .attraction-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  /* Gallery Section */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  
+  .gallery-item {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Map Section */
+  .map-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .map-placeholder {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .map-placeholder img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .map-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .map-info p {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .transportation-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .transport-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    min-width: 100px;
+    text-align: center;
+  }
+  
+  .transport-option i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #3498db;
+  }
+  
+  /* Weather Section */
+  .weather-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+  
+  .current-weather {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .current-weather h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .weather-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .weather-icon {
+    font-size: 3rem;
+    color: #f39c12;
+    margin-right: 1.5rem;
+  }
+  
+  .temperature {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .weather-description {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .seasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .season-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .season-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .season-temp {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #3498db;
+  }
+  
+  .season-card p {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+  }
+  
+  /* Travel Tips Section */
+  .tips-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .tip-card {
+    display: flex;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .tip-icon {
+    font-size: 1.8rem;
+    color: #3498db;
+    margin-right: 1rem;
+    min-width: 40px;
+  }
+  
+  .tip-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+  
+  .tip-content p {
+    color: #666;
+    line-height: 1.5;
+  }
+  
+  /* Reviews Section */
+  .reviews-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .review-summary {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .overall-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .rating-number {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #333;
+    line-height: 1;
+  }
+  
+  .rating-stars {
+    font-size: 1.5rem;
+    color: #f39c12;
+    margin: 0.5rem 0;
+  }
+  
+  .rating-count {
+    color: #666;
+  }
+  
+  .rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .rating-bar {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating-label {
+    width: 60px;
+    font-size: 0.9rem;
+  }
+  
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background-color: #eee;
+    border-radius: 4px;
+    margin: 0 10px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #f39c12;
+  }
+  
+  .rating-percent {
+    width: 40px;
+    text-align: right;
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .review-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .review-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  .reviewer-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .reviewer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  
+  .reviewer-details {
+    flex: 1;
+  }
+  
+  .reviewer-details h4 {
+    margin-bottom: 0.2rem;
+  }
+  
+  .review-date {
+    font-size: 0.9rem;
+    color: #777;
+  }
+  
+  .review-rating {
+    color: #f39c12;
+  }
+  
+  .review-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+  }
+  
+  .review-text {
+    line-height: 1.6;
+    color: #555;
+  }
+  
+  .review-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Tour Packages Section */
+  .packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  .package-card {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .package-image {
+    position: relative;
+  }
+  
+  .package-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+  
+  .package-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  
+  .package-content {
+    padding: 1.5rem;
+  }
+  
+  .package-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    color: #333;
+  }
+  
+  .package-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .package-meta i {
+    margin-right: 0.3rem;
+  }
+  
+  .package-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    color: #555;
+  }
+  
+  .package-price {
+    margin-bottom: 1.5rem;
+  }
+  
+  .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3498db;
+  }
+  
+  .per-person {
+    font-size: 0.9rem;
+    color: #777;
+    margin-left: 0.5rem;
+  }
+  
+  /* CTA Section */
+  .place-cta {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("https://via.placeholder.com/1600x800")
+      center / cover no-repeat;
+    padding: 5rem 0;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .cta-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  /* Buttons */
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
+  }
+  
+  .btn-outline {
+    background-color: transparent;
+    color: #3498db;
+    border: 2px solid #3498db;
+  }
+  
+  .btn-outline:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .btn-lg {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .place-overview {
+      grid-template-columns: 1fr;
+    }
+  
+    .review-summary {
+      grid-template-columns: 1fr;
+    }
+  
+    .weather-container {
+      grid-template-columns: 1fr;
+    }
+  
+    .map-container {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .place-hero-content h1 {
+      font-size: 2.5rem;
+    }
+  
+    .place-meta {
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-start;
+    }
+  
+    .section-title {
+      font-size: 1.8rem;
+    }
+  
+    .packages-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .cta-buttons {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .place-hero-content h1 {
+      font-size: 2rem;
+    }
+  
+    .place-nav a {
+      padding: 0.6rem 1rem;
+      font-size: 0.9rem;
+    }
+  
+    .tip-card {
+      flex-direction: column;
+    }
+  
+    .tip-icon {
+      margin-bottom: 1rem;
+      margin-right: 0;
+    }
+  }
+  

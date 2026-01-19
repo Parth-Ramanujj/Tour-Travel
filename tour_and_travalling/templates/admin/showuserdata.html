@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Info Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #userData {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>User Information Form</h2>
+  {%for r in reg%}
+<div id="userData" style="display:block;">
+    <h3>Submitted Data:</h3>
+    <p><strong>ID:</strong> <span id="{{r.user_id}}">{{r.user_id}}</span></p>
+    
+    <p><strong>Name:</strong> <span id="displayName">{{r.name}}</span></p>
+    <p><strong>Email:</strong> <span id="displayEmail">{{r.email_id}}</span></p>
+    <p><strong>Status:</strong> <span id="displayAge">Active</span></p>
+    <p><strong>Join Date:</strong> <span id="displayAge">{{r.join_date}}</span></p>
+  </div>
+{%endfor%}
+  {% comment %} <script>
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const age = document.getElementById('age').value;
+
+      // Display values
+      document.getElementById('displayName').textContent = name;
+      document.getElementById('displayEmail').textContent = email;
+      document.getElementById('displayAge').textContent = age || 'N/A';
+
+      // Show the data section
+      document.getElementById('userData').style.display = 'block';
+    });
+  </script> {% endcomment %}
+</body>
+</html>
