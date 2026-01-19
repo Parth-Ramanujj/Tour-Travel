@@ -19,22 +19,22 @@ def index(request):
     if request.method=="POST":
      pack=package.objects.all()
      search=request.POST.get('search')
-     return render(request,'home/index.html',{'pack':pack,'search':search})
+     return render(request,'travel/home/index.html',{'pack':pack,'search':search})
     
     pack=package.objects.all()
-    return render(request,"home/index.html",{'pack':pack} )
+    return render(request,"travel/home/index.html",{'pack':pack} )
     
 
 def admin_home(request):
- return render(request,"admin_home.html")
+ return render(request,"travel/admin_home.html")
 
 def search(request):
     
-    return render(request,"home/search.html")
+    return render(request,"travel/home/search.html")
 
 def offers(request):
     pack=package.objects.all()
-    return render(request,"home/offers.html",{'pack':pack})
+    return render(request,"travel/home/offers.html",{'pack':pack})
 
 
 def loginuser(request):  
@@ -56,7 +56,7 @@ def loginuser(request):
       context={
           'login1':user_login.objects.all()
       }      
-      return render(request,"home/login.html",context)
+      return render(request,"travel/home/login.html",context)
        
 def logout_user(request):
         logout(request)
@@ -82,7 +82,7 @@ def register(request):
         #   name=request.POST.get('name')
         #   print(email+password+conpassword+name)
           
-    return render(request,"home/register.html" )
+    return render(request,"travel/home/register.html" )
 
 def bookingtour(request):
     if request.method=="POST":
@@ -134,7 +134,7 @@ def bookingcon(request):
    
 def payment_tour(request):
        
-    return render(request,"home/payment.html" )  
+    return render(request,"travel/home/payment.html" )  
 
 def profile_management(request):
      if request.method == 'POST':
@@ -161,7 +161,7 @@ def profile_management(request):
         user.image=image_url
         user.save()
         return redirect('profile')  # redirect to login or home page
-     return render(request,"home/profile-management.html" )
+     return render(request,"travel/home/profile-management.html" )
 
 # image nu baki che
 def profile(request):
@@ -176,10 +176,10 @@ def profile(request):
     user=request.user
     reg=ragister.objects.all().filter(name=user)
   
-    return render(request,"home/profile.html",{'book':book,'user':user,'reg':reg,'user_name':user_name})
+    return render(request,"travel/home/profile.html",{'book':book,'user':user,'reg':reg,'user_name':user_name})
 
 def payment_history(request):
-    return render(request,"home/payment-history.html")
+    return render(request,"travel/home/payment-history.html")
 
 def place_info(request):
    
@@ -189,7 +189,7 @@ def place_info(request):
    feed=Feedback.objects.all()  
    user=User.objects.all() 
    user=request.user
-   return render(request,"home/place_info.html",{'place':place,'pack':pack,'att':att,'feed':feed,'user':user})
+   return render(request,"travel/home/place_info.html",{'place':place,'pack':pack,'att':att,'feed':feed,'user':user})
 
 
 def superadmin (request):
@@ -212,7 +212,7 @@ def superadmin (request):
     for f in rate:
       total_rating1 += f.rating
     avg_rating=total_rating1/total_rating   
-    return render(request,"admin/admin.html",{'pay':pay,'num':range(1, total_users),'book':book,'pack':pack,'rat':rate,'reg':reg,'user':user,'hotels':hotels,'total_users':total_users,
+    return render(request,"travel/admin/admin.html",{'pay':pay,'num':range(1, total_users),'book':book,'pack':pack,'rat':rate,'reg':reg,'user':user,'hotels':hotels,'total_users':total_users,
         'total_bookings':total_bookings,
         'total_amount':total_amount,
         'avg_rating':avg_rating})
@@ -240,17 +240,17 @@ def Review(request):
         place=request.GET.get('place_name')  
         pack=package.objects.all()
         att=Attractions.objects.all()
-        return render(request,"home/place_info.html",{'feed':feed,'place':place,'pack':pack,'att':att})  
+        return render(request,"travel/home/place_info.html",{'feed':feed,'place':place,'pack':pack,'att':att})  
     else:
         pack=package.objects.all()
         user=User.objects.all()
         user_name=request.user
         place=request.GET.get('place_name')  
         reg= ragister.objects.all()
-    return render(request,"home/Review.html",{'user':user,'pack':pack,'place':place,'un':user_name,'reg':reg})     
+    return render(request,"travel/home/Review.html",{'user':user,'pack':pack,'place':place,'un':user_name,'reg':reg})     
     
 def tourcondition(request):
-    filepath = os.path.join('tour_and_travalling/templates', 'tourcondition.pdf')
+    filepath = os.path.join('tour_and_travalling/templates/travel', 'tourcondition.pdf')
     return FileResponse(open(filepath, 'rb'), content_type='application/pdf')
 #manage admin panal
 
@@ -266,7 +266,7 @@ def manageuser(request):
           my_use=User.objects.create_user(name,email,password)
           my_use.save()
           return redirect("index")
-    return render(request,"admin/manageuser.html")
+    return render(request,"travel/admin/manageuser.html")
 
 
 def managehotel(request):
@@ -292,7 +292,7 @@ def managehotel(request):
         new_hotel.save()
         return redirect('superadmin')  # Update this to your success page
     
-     return render(request,"admin/managehotel.html")
+     return render(request,"travel/admin/managehotel.html")
 
 
 def managepackeg(request):
@@ -314,35 +314,35 @@ def managepackeg(request):
         )
         return redirect('superadmin') 
        
-    return render(request,"admin/managepackeg.html")
+    return render(request,"travel/admin/managepackeg.html")
 
 
 def managefeedback(request):
-    return render(request,"admin/managefeedback.html")
+    return render(request,"travel/admin/managefeedback.html")
 def addpack(request):
     if request.method == "POST":  
      print("in add pack")
     else:
        print(request.GET.get('packagename'))
         
-    return render(request,"admin/managepackeg.html")
+    return render(request,"travel/admin/managepackeg.html")
 
 def managepayment(request):
     
-    return render(request,"admin/managepayment.html")
+    return render(request,"travel/admin/managepayment.html")
 
 
 def managerating(request):
     r_id=request.GET.get('id')
    
     rat=Feedback.objects.all()
-    return render(request,"admin/managerating.html",{'rat':rat,'r_id':int(r_id)})
+    return render(request,"travel/admin/managerating.html",{'rat':rat,'r_id':int(r_id)})
 
 def upi(request):
     # name=request.session['name']
     # pack=package.objects.all().filter(place_name=name)
     price=request.GET.get('price') 
-    return render(request,"home/upi.html",{'price':price})
+    return render(request,"travel/home/upi.html",{'price':price})
 
     
 
@@ -379,14 +379,14 @@ def showuserdata(request):
     r_id=int(r_id)
     reg=ragister.objects.all().filter(user_id=r_id)
     
-    return render(request,"admin/showuserdata.html",{'reg':reg})
+    return render(request,"travel/admin/showuserdata.html",{'reg':reg})
 
 def showhotel(request):
     r_id=request.GET.get('id')
     r_id=int(r_id)
     hot=hotel.objects.all().filter(user_id=r_id)
     
-    return render(request,"admin/showuserdata.html",{'hot':hot})
+    return render(request,"travel/admin/showuserdata.html",{'hot':hot})
 
 def editpackeg(request):
     p_id=request.GET.get('p_id')
@@ -407,7 +407,7 @@ def editpackeg(request):
             obj.save()
             return redirect('superadmin')
     obj = package.objects.all().filter(package_id=p_id)
-    return render(request,"admin/editpackeg.html",{'pack':obj})
+    return render(request,"travel/admin/editpackeg.html",{'pack':obj})
 
 def edithotel(request):
     h_id=request.GET.get('h_id')
@@ -425,4 +425,4 @@ def edithotel(request):
             obj.save()
         return redirect('superadmin')
     obj = hotel.objects.all().filter(hotel_id=h_id)
-    return render(request,"admin/edithotel.html",{'htl':obj})
+    return render(request,"travel/admin/edithotel.html",{'htl':obj})
